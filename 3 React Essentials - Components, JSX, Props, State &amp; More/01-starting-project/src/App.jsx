@@ -52,8 +52,6 @@ function App() {
             <TabButton isSelected={selectedTopic  === "state"} onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
           {/* 1 st using ternary operator in single line*/}
-
-
           {/* {! selectedTopic ? <p>Please Select a Topic!</p> :<div id="tab-content">
             <h3>{EXAMPLES[selectedTopic].title}</h3>
             <p>{EXAMPLES[selectedTopic].description}</p>
@@ -63,6 +61,8 @@ function App() {
               </code>
             </pre>
           </div> } */}
+
+          
 
           {/* 2nd using AND operator in two segment*/}
           {/* { !selectedTopic && <div id="tab-content"> <p>Please Select a Topic!</p></div>  } 
