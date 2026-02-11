@@ -32,7 +32,7 @@ function App() {
       <main>
         <section id="core-concepts">
           <ul>
-            {CORE_CONCEPTS.map((conceptItem)=>(<CoreConcepts key={conceptItem.title} {...conceptItem} />))}
+            {CORE_CONCEPTS.map((conceptItem) => (<CoreConcepts key={conceptItem.title} {...conceptItem} />))}
             {/* <CoreConcepts
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
@@ -46,10 +46,22 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton isSelected={selectedTopic === "components"} onSelect={() => handleSelect("components")}>Components</TabButton>
-            <TabButton isSelected={selectedTopic === "jsx"} onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic  === "props"} onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton isSelected={selectedTopic  === "state"} onSelect={() => handleSelect("state")}>State</TabButton>
+            <TabButton
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleSelect("components")}>Components
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}>JSX
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleSelect("props")}>Props
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleSelect("state")}>State
+            </TabButton>
           </menu>
           {/* 1 st using ternary operator in single line*/}
           {/* {! selectedTopic ? <p>Please Select a Topic!</p> :<div id="tab-content">
@@ -62,7 +74,7 @@ function App() {
             </pre>
           </div> } */}
 
-          
+
 
           {/* 2nd using AND operator in two segment*/}
           {/* { !selectedTopic && <div id="tab-content"> <p>Please Select a Topic!</p></div>  } 
