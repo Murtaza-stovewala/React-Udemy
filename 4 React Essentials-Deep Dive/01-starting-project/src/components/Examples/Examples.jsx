@@ -29,6 +29,7 @@ export default function Examples() {
   return (
     <Section title="Examples" id="examples">  { /*/<Tab*Container="menu" we dont have to set it now for menu but if we change it for some different element we upadte it here */}
       <Tabs
+      Container='menu'
        button={
         <>
           <TabButton
