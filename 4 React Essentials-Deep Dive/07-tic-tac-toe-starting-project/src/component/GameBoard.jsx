@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const initalGameBoard = [
-    [null,null,null],
-    [null,null,null],
-    [null,null,null]
-] // multi dimensional array is what we wwant 
+// const initalGameBoard = [
+//     [null,null,null],
+//     [null,null,null],
+//     [null,null,null]
+// ] // multi dimensional array is what we want moved to app.jsx for winnign combination 
 
 
-export default function GameBoard({onSelectSquare,turns}) {
+export default function GameBoard({onSelectSquare,board}) {
     // const[gameBoard, setGameBoard ]= useState(initalGameBoard);
     // function handelSelectSquare(rowIndex,colIndex) {
     //     setGameBoard((prevGameBoard)=>{
@@ -19,15 +19,17 @@ export default function GameBoard({onSelectSquare,turns}) {
     //     )
     //     onSelectSquare();
     // } // we will lift this step in game turns in app.jsx
-    let gameBoard =initalGameBoard;
-    for(const turn of turns){
-        const  {square ,player} =turn;
-        const  {row ,col} =square;
-    gameBoard[row][col]=player;
-    }
+
+
+    // let gameBoard =initalGameBoard;
+    // for(const turn of turns){
+    //     const  {square ,player} =turn;
+    //     const  {row ,col} =square;
+    // gameBoard[row][col]=player;
+    // } // moved to app.jsx for winnign combination
 
     return <ol id="game-board">
-        {gameBoard.map((row,rowIndex)=><li key={rowIndex}>
+        {board.map((row,rowIndex)=><li key={rowIndex}>
             <ol>
                 {row.map((playerSymbol,colIndex)=><li key={colIndex}>
                     {/* <button onClick={()=>handelSelectSquare(rowIndex,colIndex)}>{playerSymbol}</button> */}
