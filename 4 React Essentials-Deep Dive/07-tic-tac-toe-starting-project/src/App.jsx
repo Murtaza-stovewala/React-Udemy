@@ -42,7 +42,11 @@ function App() {
     O : 'Player Sigma'
   })
   function handlePlayerNameChange(symbol,newName){
-    setPlayers;
+    setPlayers(prevPlayerName=>{
+      return{
+        ...prevPlayerName,[symbol]:newName
+      }
+    });
 
   }
   const [gameTurns, setGameTurns] = useState([]);
@@ -55,6 +59,7 @@ let gameBoard = [...initalGameBoard.map(array=>[...array])];
     gameBoard[row][col] = player;
   }
   let winner=null;
+  let winnerSymbol;
 
   // const[hasWinner,setHasWinner]=useState(false);
   for (const combinations of WINNING_COMBINATIONS) {
@@ -62,7 +67,8 @@ let gameBoard = [...initalGameBoard.map(array=>[...array])];
     const secondBoxSymbol=gameBoard[combinations[1].row][combinations[1].column];
     const thirdBoxSymbol=gameBoard[combinations[2].row][combinations[2].column];
     if(firstBoxSymbol && firstBoxSymbol==secondBoxSymbol && firstBoxSymbol==thirdBoxSymbol){
- winner=firstBoxSymbol;
+ winner=players[firstBoxSymbol];
+ winnerSymbol=firstBoxSymbol;
     }
   }
   const hasDraw=gameTurns.length==9 && !winner;
@@ -84,11 +90,11 @@ let gameBoard = [...initalGameBoard.map(array=>[...array])];
     <main>
       <div id="game-container">
         <ol id="players" className="highlight-player">
-          <Player initialName="Player Alpha" symbol="X" isActive={activePlayer === 'X'} />
-          <Player initialName="Player Sigma" symbol="O" isActive={activePlayer === 'O'} />
+          <Player initialName="Player Alpha" symbol="X" isActive={activePlayer === 'X'} onChangeName={handlePlayerNameChange} />
+          <Player initialName="Player Sigma" symbol="O" isActive={activePlayer === 'O'} onChangeName={handlePlayerNameChange} />
 
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleReMatch}/>}
+        {(winner || hasDraw) && <GameOver winner={winner} symbol={winnerSymbol} onRestart={handleReMatch}/>}
         <GameBoard onSelectSquare={handelSelectSquare} board={gameBoard} />
       </div>
 
