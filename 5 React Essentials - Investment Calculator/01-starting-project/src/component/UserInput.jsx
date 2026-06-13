@@ -1,7 +1,7 @@
 import { use, useState } from "react";
 
 
-export default function UserInput({ userInput, onchange }) {
+export default function UserInput({ userinfo, update }) {
     
     
     return (
@@ -11,16 +11,16 @@ export default function UserInput({ userInput, onchange }) {
                     <label>Initial Investment</label>
                     <input type="number"
                         required
-                        value={userInput.initialInvestment}
-                        onChange={(event) => onchange('initialInvestment', event.target.value)}>
+                        value={userinfo.initialInvestment}
+                        onChange={(event) => update('initialInvestment', event.target.value)}>
                     </input>
                 </p>
                 <p>
                     <label>Annual Investment</label>
                     <input type="number"
                         required
-                        value={userInput.annualInvestment}
-                        onChange={(event) => onchange('annualInvestment', event.target.value)}>
+                        value={userinfo.annualInvestment}
+                        onChange={(event) => update('annualInvestment', event.target.value)}>
                     </input>
                 </p>
             </div>
@@ -29,16 +29,16 @@ export default function UserInput({ userInput, onchange }) {
                     <label>Expected Return</label>
                     <input type="number"
                         required
-                        value={userInput.expectedReturn}
-                        onChange={(event) => onchange('expectedReturn', event.target.value)}>
+                        value={userinfo.expectedReturn}
+                        onChange={(event) => update('expectedReturn', event.target.value)}>
                     </input>
                 </p>
                 <p>
                     <label>Duration</label>
                     <input type="number"
                         required
-                        value={userInput.duration}
-                        onChange={(event) => onchange('duration', event.target.value)}>
+                        value={userinfo.duration}
+                        onChange={(event) => update('duration', event.target.value)}>
                     </input>
                 </p>
             </div>
