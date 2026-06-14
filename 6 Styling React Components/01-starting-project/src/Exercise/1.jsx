@@ -32,12 +32,6 @@
 
 function App() {
     const[color,setcolor]=React.useState('white');
-    function handleYes(){
-        setChecked('Yes');
-    }
-    function handleNo(){
-        setChecked('No');
-    }
     return (
     <div id="app">
       <h1 
