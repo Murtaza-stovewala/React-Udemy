@@ -36,7 +36,8 @@ export default function AuthInputs() {
           />
         </p>
         <p>
-          <label>Password</label>
+          <label className={`label ${passwordNotValid ? 'invalid':undefined}`}
+          >Password</label>
           <input
             type="password"
             className={passwordNotValid ? 'invalid' : undefined}
