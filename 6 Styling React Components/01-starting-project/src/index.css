@@ -74,6 +74,11 @@ input.invalid {
   border-color: #f73f3f;
   background-color: #fed2d2;
 }
+input.valid{
+  color: #72ef44;
+  border-color: #3ff761;
+  background-color: #d4fed2;
+}
 
 .actions {
   display: flex;
