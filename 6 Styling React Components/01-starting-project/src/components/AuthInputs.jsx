@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
-import CustomInput from './Input';
-const ControlContainer = styled.div`display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;`
+import Input from './Input';
+// const ControlContainer = styled.div`display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+//   margin-bottom: 1.5rem;`
 
 
 
@@ -31,8 +31,8 @@ export default function AuthInputs() {
 
   return (
     <div id='auth-inputs'>
-      <ControlContainer>
-          <CustomInput
+      <div className='flex flex-col gap-2 mb-16'>
+          <Input
             label='Email'
             type="email"
             // style={{
@@ -42,7 +42,7 @@ export default function AuthInputs() {
             invalid={emailNotValid}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
-          <CustomInput
+          <Input
             label='Password'
             type="password"
             invalid={passwordNotValid}
@@ -79,7 +79,7 @@ export default function AuthInputs() {
             }
           />
         </p> */}
-      </ControlContainer>
+      </div>
       <div className="actions">
         <button type="button" className="text-button">
           Create a new account
