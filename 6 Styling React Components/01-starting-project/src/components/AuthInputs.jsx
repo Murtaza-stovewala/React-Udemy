@@ -30,7 +30,7 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div /*id='auth-inputs'*/ className=" align- w-full max-w-md p-8 mx-auto rounded-lg shadow bg-gradient-to-b from-[#474232] to-[#28271c]">
+    <div /*id='auth-inputs'*/ className=" align- w-full max-w-md p-8 mx-auto rounded-lg shadow-xl bg-gradient-to-b from-[#474232] to-[#28271c]">
       <div className='flex flex-col gap-2 mb-16'>
          {/* <ControlContainer> */}
           <Input
@@ -83,7 +83,7 @@ export default function AuthInputs() {
         {/* </ControlContainer> */}
       </div>
       <div /*className="actions"*/ className="flex justify-end gap-4">
-        <button type="button" /*className="text-button"*/ className="px-8 py-4  font-semibold uppercase rounded text-gray-800 bg-[#f0b322] ">
+        <button type="button" /*className="text-button"*/ className="px-8 py-4  font-semibold uppercase rounded text-old-800 text-[#f0b322] hover:text-[#f0920e]">
           Create a new account
         </button>
         <Button
