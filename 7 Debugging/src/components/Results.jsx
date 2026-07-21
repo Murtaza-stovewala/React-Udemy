@@ -1,6 +1,8 @@
 import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
 
+// const results = [];//so whenever the UserInput changes in this case,the other code in this file,so the creation of this array, will not be re-executed, that's still only executed once. And therefore what's happening here is that an array gets created and then inside of the calculateInvestmentResults function, more and more items are being added to one and the same array in memory because the array is never reset or anything like this.That's why we should take this code and move it backinto the component function so that a new array is recreated
+//every time this component function is executed.And with that, we can see that if we reload this app,this error goes away and there is no error in the console.
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
