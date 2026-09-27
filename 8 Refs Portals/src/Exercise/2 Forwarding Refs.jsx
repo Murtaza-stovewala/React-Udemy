@@ -2,7 +2,7 @@ import Input from './Input';
 import React from 'react'
 export const userData = {
   name: '',
-  email: "Your E-Mail",
+  email: '',
 };
 
 export function App() {
@@ -14,8 +14,8 @@ export function App() {
   function handleSaveData() {
     userData.name = nameInput.current.value;
     userData.email = emailInput.current.value;
-    setName(userData.name);
-    setEmail(userData.email);
+    setName(`Name: ${userData.name}`);
+    setEmail(`Email: ${userData.email}`);
     console.log(userData);
     
   }
