@@ -17,9 +17,9 @@ export default function Input({ label, textarea, ...props }) {
 }
 
 /*
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 
-const Input=React.forwardRef(function InPut({ label, textarea, ...props },ref) {
+const Input = forwardRef(function Input({ label, textarea, ...props }, ref) {
   const classes =
     'w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600';
 
@@ -35,6 +35,7 @@ const Input=React.forwardRef(function InPut({ label, textarea, ...props },ref) {
       )}
     </p>
   );
-})
+});
+
 export default Input;
 */
