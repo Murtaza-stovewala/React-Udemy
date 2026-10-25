@@ -29,9 +29,6 @@ export default function ShowProject({ project, isSaved, isDelete }) {
             dueDate: enteredDueDate
         })
     }
-    function handleDelete() {
-        modal.current.open();
-    }
     const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
