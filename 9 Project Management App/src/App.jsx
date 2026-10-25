@@ -70,6 +70,7 @@ function App() {
         }
         return proj;
       })
+      localStorage.setItem('projects', JSON.stringify(updatedProjects));
       return {
         ...prevState,
         selectedProjectId: updatedProjectData.id,
@@ -79,13 +80,13 @@ function App() {
   }
   function handleDeleteProject() {
     setProjectState(prevState => {
-      const updatedProject = prevState.projects.filter(
+      const updatedProjects = prevState.projects.filter(
         (proj) => proj.id !== prevState.selectedProjectId);
       localStorage.setItem('projects', JSON.stringify(updatedProjects));
       return {
         ...prevState,
         selectedProjectId: undefined,
-        projects: updatedProject,
+        projects: updatedProjects,
       }
 
     })
