@@ -12,7 +12,7 @@ function App() {
     tasks: JSON.parse(localStorage.getItem("tasks")) || [],
   });
 
-  function handleStartAddProject() {
+  function handleStartAddingProject() {
     setProjectState((prevState) => {
       return {
         ...prevState,
@@ -162,7 +162,7 @@ function App() {
       />
     );
   } else if (projectState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+    content = <NoProjectSelected onStartAddProject={handleStartAddingProject} />;
   } else {
     content = (
       <ShowProject
@@ -180,7 +180,7 @@ function App() {
   return (
     <main className="h-screen my-8 flex gap-8 ">
       <ProjectSideBar
-        onStartAddProject={handleStartAddProject}
+        onStartAddProject={handleStartAddingProject}
         projects={projectState.projects}
         isSlected={handleShowProject}
       />
@@ -192,11 +192,11 @@ function App() {
 export default App;
 
 // <main className="h-screen my-8 flex gap-8 ">
-//   <ProjectSideBar onStartAddProject={handleStartAddProject} />
+//   <ProjectSideBar onStartAddProject={handleStartAddingProject} />
 //   {content}
 //   {projectState.selectedProjectId ===null ?
 //   (<NewProject/>) :
-//   (<NoProjectSelected onStartAddProject={handleStartAddProject}/>) }
+//   (<NoProjectSelected onStartAddProject={handleStartAddingProject}/>) }
 //   {projectState.selectedProjectId === null && <NewProject />}
-//   {projectState.selectedProjectId===undefined && <NoProjectSelected onStartAddProject={handleStartAddProject} />}
+//   {projectState.selectedProjectId===undefined && <NoProjectSelected onStartAddProject={handleStartAddingProject} />}
 // </main>
