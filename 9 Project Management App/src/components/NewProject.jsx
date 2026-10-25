@@ -3,7 +3,7 @@ import Input from './Input.jsx';
 import Modal from './Modal.jsx';
 import Button from './Button.jsx';
 
-export default function NewProject({ isSaved }) {
+export default function NewProject({ isSaved,isCanceled}) {
     const modal=useRef();
     const title = useRef();
     const description = useRef();
@@ -24,6 +24,7 @@ export default function NewProject({ isSaved }) {
             dueDate: enteredDueDate
         })
     }
+
     return (
         <>
             <Modal ref={modal}>
@@ -40,7 +41,7 @@ export default function NewProject({ isSaved }) {
             <div className="w-[35rem] mt-16">
                 <menu className="flex items-center justify-end gap-4 my-4">
                     <li>
-                        <button className="text-stone-800 hover:text-stone-950">
+                        <button className="text-stone-800 hover:text-stone-950" onClick={isCanceled}>
                             Cancel
                         </button>
                     </li>
