@@ -12,6 +12,8 @@ function App() {
     tasks: JSON.parse(localStorage.getItem("tasks")) || [],
   });
 
+  //------------------------------------------------------------------------------------------------------------------------------------------------------
+
   function handleStartAddingProject() {
     setProjectState((prevState) => {
       return {
@@ -20,14 +22,7 @@ function App() {
       };
     });
   }
-  function handleCancelAddProject() {
-    setProjectState((prevState) => {
-      return {
-        ...prevState,
-        selectedProjectId: undefined, //adding a new project
-      };
-    });
-  }
+
   function handleAddProject(projectData) {
     setProjectState((prevState) => {
       const projectId = Math.random();
@@ -48,6 +43,18 @@ function App() {
       };
     });
   }
+
+  function handleCancelAddProject() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined, //adding a new project
+      };
+    });
+  }
+
+  //------------------------------------------------------------------------------------------------------------------------------------------------------
+
   function handleShowProject(projectId) {
     setProjectState((prevState) => {
       return {
@@ -80,6 +87,7 @@ function App() {
       };
     });
   }
+
   function handleDeleteProject() {
     setProjectState((prevState) => {
       const updatedProjects = prevState.projects.filter(
@@ -94,35 +102,7 @@ function App() {
     });
   }
 
-  // function handleUpdateSavedProject(updatedProjectData) {
-  //   setProjectState(prevState => {
-  //     return {
-  //       ...prevState,
-  //       selectedProjectId: updatedProjectData.id,
-  //       projects: prevState.projects.map((proj) => {
-  //         if (proj.id === updatedProjectData.id) {
-  //           return {
-  //             ...proj,
-  //             ...updatedProjectData,
-  //           };
-  //         }
-  //         return proj;
-  //       }),
-  //     };
-  //   });
-  // }
-  // function handleDeleteProject() {
-  //   setProjectState(prevState => {
-  //     return {
-  //       ...prevState,
-  //       selectedProjectId: undefined,
-  //       projects: prevState.projects.filter(
-  //         proj => proj.id !== prevState.selectedProjectId
-  //       ),
-  //     }
-  //   })
-
-  // }
+  //------------------------------------------------------------------------------------------------------------------------------------------------------
 
   function handleAddTask(text) {
     setProjectState((prevState) => {
@@ -140,11 +120,10 @@ function App() {
       };
     });
   }
+
   function handleDeleteTask(id) {
     setProjectState((prevState) => {
-      const updatedTasks = prevState.tasks.filter(
-        (proj) => proj.id !== id,
-      );
+      const updatedTasks = prevState.tasks.filter((proj) => proj.id !== id);
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
       return {
         ...prevState,
@@ -152,6 +131,8 @@ function App() {
       };
     });
   }
+  
+  //------------------------------------------------------------------------------------------------------------------------------------------------------
 
   let content;
   if (projectState.selectedProjectId === null) {
@@ -162,7 +143,9 @@ function App() {
       />
     );
   } else if (projectState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddingProject} />;
+    content = (
+      <NoProjectSelected onStartAddProject={handleStartAddingProject} />
+    );
   } else {
     content = (
       <ShowProject
@@ -200,3 +183,33 @@ export default App;
 //   {projectState.selectedProjectId === null && <NewProject />}
 //   {projectState.selectedProjectId===undefined && <NoProjectSelected onStartAddProject={handleStartAddingProject} />}
 // </main>
+
+// function handleUpdateSavedProject(updatedProjectData) {
+//   setProjectState(prevState => {
+//     return {
+//       ...prevState,
+//       selectedProjectId: updatedProjectData.id,
+//       projects: prevState.projects.map((proj) => {
+//         if (proj.id === updatedProjectData.id) {
+//           return {
+//             ...proj,
+//             ...updatedProjectData,
+//           };
+//         }
+//         return proj;
+//       }),
+//     };
+//   });
+// }
+// function handleDeleteProject() {
+//   setProjectState(prevState => {
+//     return {
+//       ...prevState,
+//       selectedProjectId: undefined,
+//       projects: prevState.projects.filter(
+//         proj => proj.id !== prevState.selectedProjectId
+//       ),
+//     }
+//   })
+
+// }
