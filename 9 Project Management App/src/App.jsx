@@ -8,59 +8,61 @@ function App() {
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
     // projects: [],
-    projects: JSON.parse(localStorage.getItem('projects')) || [],
+    projects: JSON.parse(localStorage.getItem("projects")) || [],
+    tasks: JSON.parse(localStorage.getItem("tasks")) || [],
   });
+
   function handleStartAddProject() {
-    setProjectState(prevState => {
+    setProjectState((prevState) => {
       return {
         ...prevState,
-        selectedProjectId: null,//adding a new project
+        selectedProjectId: null, //adding a new project
       };
-    })
+    });
   }
   function handleCancelAddProject() {
-    setProjectState(prevState => {
+    setProjectState((prevState) => {
       return {
         ...prevState,
-        selectedProjectId: undefined,//adding a new project
+        selectedProjectId: undefined, //adding a new project
       };
-    })
+    });
   }
   function handleAddProject(projectData) {
-    setProjectState(prevState => {
-      const projectId = Math.random()
+    setProjectState((prevState) => {
+      const projectId = Math.random();
       const newProject = {
         ...projectData,
         id: projectId,
         // title: ,
         // description: ,
-        // dueDate: 
-      }
+        // dueDate:
+      };
       const updatedProjects = [...prevState.projects, newProject];
-      localStorage.setItem('projects', JSON.stringify(updatedProjects));
+      localStorage.setItem("projects", JSON.stringify(updatedProjects));
       return {
         ...prevState,
         projects: updatedProjects,
         selectedProjectId: undefined,
         // selectedProjectId:undefined,
-      }
-    })
+      };
+    });
   }
   function handleShowProject(projectId) {
-    setProjectState(prevState => {
+    setProjectState((prevState) => {
       return {
         ...prevState,
-        selectedProjectId: projectId
-      }
-    })
+        selectedProjectId: projectId,
+      };
+    });
   }
 
   const selectedProject = projectState.projects.find(
-    (proj) => proj.id === projectState.selectedProjectId
+    (proj) => proj.id === projectState.selectedProjectId,
   );
 
   function handleUpdateSavedProject(updatedProjectData) {
-    setProjectState(prevState => {
+    setProjectState((prevState) => {
       const updatedProjects = prevState.projects.map((proj) => {
         if (proj.id === updatedProjectData.id) {
           return {
@@ -69,27 +71,27 @@ function App() {
           };
         }
         return proj;
-      })
-      localStorage.setItem('projects', JSON.stringify(updatedProjects));
+      });
+      localStorage.setItem("projects", JSON.stringify(updatedProjects));
       return {
         ...prevState,
         selectedProjectId: updatedProjectData.id,
         projects: updatedProjects,
-      }
+      };
     });
   }
   function handleDeleteProject() {
-    setProjectState(prevState => {
+    setProjectState((prevState) => {
       const updatedProjects = prevState.projects.filter(
-        (proj) => proj.id !== prevState.selectedProjectId);
-      localStorage.setItem('projects', JSON.stringify(updatedProjects));
+        (proj) => proj.id !== prevState.selectedProjectId,
+      );
+      localStorage.setItem("projects", JSON.stringify(updatedProjects));
       return {
         ...prevState,
         selectedProjectId: undefined,
         projects: updatedProjects,
-      }
-
-    })
+      };
+    });
   }
 
   // function handleUpdateSavedProject(updatedProjectData) {
@@ -122,21 +124,66 @@ function App() {
 
   // }
 
+  function handleAddTask(text) {
+    setProjectState((prevState) => {
+      const taskId = Math.random();
+      const newTasks = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+      const updatedTasks = [...prevState.tasks, newTasks];
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      return {
+        ...prevState,
+        tasks: updatedTasks,
+      };
+    });
+  }
+  function handleDeleteTask(id) {
+    setProjectState((prevState) => {
+      const updatedTasks = prevState.tasks.filter(
+        (proj) => proj.id !== id,
+      );
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      return {
+        ...prevState,
+        tasks: updatedTasks,
+      };
+    });
+  }
+
   let content;
   if (projectState.selectedProjectId === null) {
-    content = <NewProject isSaved={handleAddProject} isCanceled={handleCancelAddProject} />
-  }
-  else if (projectState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />
-  }
-  else {
-    content = <ShowProject project={selectedProject} isSaved={handleUpdateSavedProject} isDelete={handleDeleteProject} />
+    content = (
+      <NewProject
+        isSaved={handleAddProject}
+        isCanceled={handleCancelAddProject}
+      />
+    );
+  } else if (projectState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  } else {
+    content = (
+      <ShowProject
+        project={selectedProject}
+        isSaved={handleUpdateSavedProject}
+        isDelete={handleDeleteProject}
+        onAddTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
+        tasks={projectState.tasks}
+      />
+    );
   }
 
   // console.log(projectState);
   return (
     <main className="h-screen my-8 flex gap-8 ">
-      <ProjectSideBar onStartAddProject={handleStartAddProject} projects={projectState.projects} isSlected={handleShowProject} />
+      <ProjectSideBar
+        onStartAddProject={handleStartAddProject}
+        projects={projectState.projects}
+        isSlected={handleShowProject}
+      />
       {content}
     </main>
   );
