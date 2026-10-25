@@ -21,8 +21,9 @@ export default function ShowProject({ project, isSaved, isDelete }) {
             modal.current.open();
             return;
         }
-
+        // handleEdit();
         isSaved({
+            id: project.id,
             title: enteredTitle,
             description: enteredDescription,
             dueDate: enteredDueDate

@@ -51,9 +51,41 @@ function App() {
       }
     })
   }
+
   const selectedProject = projectState.projects.find(
     (proj) => proj.id === projectState.selectedProjectId
   );
+
+  function handleUpdateSavedProject(updatedProjectData) {
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId:updatedProjectData.id,
+        projects:prevState.projects.map((proj)=>{
+          if(proj.id===updatedProjectData.id){
+            return {
+              ...proj,
+             ...updatedProjectData,
+            };
+          }
+          return proj;
+        }),       
+      };
+    });
+  }
+  function handleDeleteProject() {
+    setProjectState(prevState=>{
+      return{
+        ...prevState,
+        selectedProjectId:undefined,
+        projects:prevState.projects.filter(
+          proj=>proj.id!==prevState.selectedProjectId
+        ),
+      }
+    })
+
+  }
+
   let content;
   if (projectState.selectedProjectId === null) {
     content = <NewProject isSaved={handleAddProject} isCanceled={handleCancelAddProject} />
@@ -62,7 +94,7 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />
   }
   else {
-    content = <ShowProject project={selectedProject} isSaved={handleAddProject} isCanceled={handleCancelAddProject} />
+    content = <ShowProject project={selectedProject} isSaved={handleUpdateSavedProject} isDelete={handleDeleteProject} />
   }
 
   // console.log(projectState);
