@@ -2,6 +2,7 @@ import { useState } from "react";
 import NewProject from "./components/NewProject";
 import NoProjectSelected from "./components/NoProjectSelected";
 import ProjectSideBar from "./components/ProjectSideBar";
+import ShowProject from "./components/ShowProject";
 
 function App() {
   const [projectState, setProjectState] = useState({
@@ -16,7 +17,7 @@ function App() {
       };
     })
   }
-  function handleCancelroject() {
+  function handleCancelAddProject() {
     setProjectState(prevState => {
       return {
         ...prevState,
@@ -24,37 +25,50 @@ function App() {
       };
     })
   }
-  
   function handleAddProject(projectData) {
-    setProjectState(prevState=>{
-      const projectId=Math.random()
-      const newProject={
+    setProjectState(prevState => {
+      const projectId = Math.random()
+      const newProject = {
         ...projectData,
-        id:projectId,
+        id: projectId,
         // title: ,
         // description: ,
         // dueDate: 
       }
       return {
         ...prevState,
-        projects:[...prevState.projects,newProject],
-        selectedProjectId:undefined,
+        projects: [...prevState.projects, newProject],
+        selectedProjectId: undefined,
         // selectedProjectId:undefined,
       }
     })
   }
-
+  function handleShowProject(projectId) {
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: projectId
+      }
+    })
+  }
+  const selectedProject = projectState.projects.find(
+    (proj) => proj.id === projectState.selectedProjectId
+  );
   let content;
   if (projectState.selectedProjectId === null) {
-    content = <NewProject isSaved={handleAddProject} isCanceled={handleCancelroject} />
+    content = <NewProject isSaved={handleAddProject} isCanceled={handleCancelAddProject} />
   }
   else if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />
   }
-// console.log(projectState);
+  else {
+    content = <ShowProject project={selectedProject} isSaved={handleAddProject} isCanceled={handleCancelAddProject} />
+  }
+
+  // console.log(projectState);
   return (
     <main className="h-screen my-8 flex gap-8 ">
-      <ProjectSideBar onStartAddProject={handleStartAddProject} projects={projectState.projects} />
+      <ProjectSideBar onStartAddProject={handleStartAddProject} projects={projectState.projects} isSlected={handleShowProject} />
       {content}
     </main>
   );
