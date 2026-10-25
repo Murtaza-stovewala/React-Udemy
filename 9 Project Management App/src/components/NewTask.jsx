@@ -10,6 +10,7 @@ export default function NewTask({ onAdd }) {
   function handleClick() {
     if (enteredTask.length === 0) {
       modal.current.open();
+      return;
     }
     onAdd(enteredTask);
     setEnteredTask("");
