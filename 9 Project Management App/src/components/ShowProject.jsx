@@ -37,15 +37,15 @@ export default function ShowProject({ project, isSaved, isDelete }) {
     let content;
     if (isEdit) {
         content = <div>
-            <Input type="text" ref={title} label="Title" defaultValue={project.title} />
-            <Input ref={description} label="Description" textarea defaultValue={project.description} />
+            <Input type="text" ref={title} label="Title" style={{ textTransform: 'capitalize' }} defaultValue={project.title} />
+            <Input ref={description} label="Description" style={{ textTransform: 'capitalize' }} textarea defaultValue={project.description} />
             <Input type="date" ref={dueDate} label="Due Date" defaultValue={project.dueDate} />
         </div>
     }
     else {
         content = <div className="flex flex-col gap-4">
             <header className="pb-4 border-b-2 border-stone-300">
-                <h1 className="text-3xl font-bold text-stone-600 mb-2">{project.title}</h1>
+                <h1 className="text-3xl font-bold capitalize text-stone-600 mb-2">{project.title}</h1>
                 <p className="text-stone-400 text-sm">{project.dueDate}</p>
             </header>
             <p className="text-stone-600 whitespace-pre-wrap leading-relaxed capitalize">
