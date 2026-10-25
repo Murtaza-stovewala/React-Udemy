@@ -123,7 +123,7 @@ function App() {
 
   function handleDeleteTask(id) {
     setProjectState((prevState) => {
-      const updatedTasks = prevState.tasks.filter((proj) => proj.id !== id);
+      const updatedTasks = prevState.tasks.filter((task) => task.id !== id);
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
       return {
         ...prevState,
@@ -131,7 +131,7 @@ function App() {
       };
     });
   }
-  
+
   //------------------------------------------------------------------------------------------------------------------------------------------------------
 
   let content;
