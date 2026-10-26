@@ -8,7 +8,7 @@ export default function NewTask({ onAdd }) {
     setEnteredTask(event.target.value);
   }
   function handleClick() {
-    if (enteredTask.length === 0) {
+    if (enteredTask.trim() === '') {
       modal.current.open();
       return;
     }
