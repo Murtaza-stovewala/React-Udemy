@@ -67,18 +67,22 @@ function App() {
       };
     });
   }
-
+  const ctxValue= {
+    items:shoppingCart.items,
+    addItemToCart:handleAddItemToCart,
+    onUpdateCartItemQuantity:handleUpdateCartItemQuantity
+  }
   return (
-    <CartContext.Provider value={{items:[]}}>
+    <CartContext.Provider value={ctxValue}>
       <Header
         cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+        onUpdateItemQuantity={handleUpdateCartItemQuantity}
       />
       {/* <Shop onAddItemToCart={handleAddItemToCart}></Shop> */}
       <Shop >
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product} />
           </li>
         ))}
       </Shop>
