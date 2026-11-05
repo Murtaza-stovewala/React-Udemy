@@ -3,10 +3,10 @@ import { use } from "react";
 
 export default function Cart({ 
   // items, 
-  onUpdateItemQuantity 
+  // onUpdateItemQuantity 
 }) {
   const { items } = use(CartContext);
-  // const { onUpdateItemQuantity } = use(CartContext);
+  const { onUpdateItemQuantity } = use(CartContext);
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,

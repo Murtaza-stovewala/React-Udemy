@@ -75,8 +75,8 @@ function App() {
   return (
     <CartContext.Provider value={ctxValue}>
       <Header
-        cart={shoppingCart}
-        onUpdateItemQuantity={handleUpdateCartItemQuantity}
+        // cart={shoppingCart}
+        // onUpdateItemQuantity={handleUpdateCartItemQuantity}
       />
       {/* <Shop onAddItemToCart={handleAddItemToCart}></Shop> */}
       <Shop >
