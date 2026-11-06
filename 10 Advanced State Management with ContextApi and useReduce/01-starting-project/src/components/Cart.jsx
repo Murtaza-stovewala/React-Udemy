@@ -6,7 +6,7 @@ export default function Cart({
   // onUpdateItemQuantity 
 }) {
   const { items } = use(CartContext);
-  const { onUpdateItemQuantity } = use(CartContext);
+  const {onUpdateItemQuantity } = use(CartContext);
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,

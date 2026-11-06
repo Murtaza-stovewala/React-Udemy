@@ -70,7 +70,7 @@ function App() {
   const ctxValue= {
     items:shoppingCart.items,
     addItemToCart:handleAddItemToCart,
-    onUpdateCartItemQuantity:handleUpdateCartItemQuantity
+    onUpdateItemQuantity:handleUpdateCartItemQuantity
   }
   return (
     <CartContext.Provider value={ctxValue}>
