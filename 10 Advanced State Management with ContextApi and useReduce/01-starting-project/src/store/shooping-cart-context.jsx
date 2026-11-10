@@ -67,9 +67,7 @@ function shoppingCartReducer(state, action) {
 }
 
 export default function CartContextProvider({ children }) {
-  const [shoppingCart, setShoppingCart] = useState({
-    items: [],
-  });
+ 
 
   const [shoppingCartState, dispatch] = useReducer(shoppingCartReducer, {
     items: [],
