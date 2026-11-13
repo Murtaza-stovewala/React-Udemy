@@ -10,17 +10,26 @@ export default function Questions({
   onSkipAnswer,
 }) {
   const [answer, setAnswer] = useState({
-    selectedAnswers: "",
+    selectedAnswer: "",
     isCorrect: null,
   });
+
+  let timer = 10000;
+  if (answer.selectedAnswer) {
+    timer = 1000;
+  }
+  if (answer.isCorrect !== null) {
+    timer = 2000;
+  }
+
   function handleSelectAnswer(answer) {
     setAnswer({
-      selectedAnswers: answer,
+      selectedAnswer: answer,
       isCorrect: null,
     });
     setTimeout(() => {
       setAnswer({
-        selectedAnswers: answer,
+        selectedAnswer: answer,
         isCorrect: QUESTIONS[index].answers[0] === answer,
       });
       setTimeout(() => {
@@ -30,25 +39,29 @@ export default function Questions({
   }
   let answeredState = "";
 
-  if (answer.selectedAnswers && answer.isCorrect !== null) {
+  if (answer.selectedAnswer && answer.isCorrect !== null) {
     answeredState = answer.isCorrect ? "correct" : "wrong";
-  } else if (answer.selectedAnswers) {
+  } else if (answer.selectedAnswer) {
     answeredState = "answered";
   }
 
   return (
     <div id="questions">
       <QuizTimer
-        onTimeout={onSkipAnswer}
-        timeout={10000}
+        key={timer}
+        timeout={timer}
+        onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
+        mode={answeredState}
         // key={activeQuestionIndex}
       />
-     {/* <h2>{`Q.(${index + 1}) ${QUESTIONS[index].text}`}</h2> */}
-     <h2>Q.{index + 1}- {QUESTIONS[index].text}</h2>
+      {/* <h2>{`Q.(${index + 1}) ${QUESTIONS[index].text}`}</h2> */}
+      <h2>
+        Q.{index + 1}- {QUESTIONS[index].text}
+      </h2>
       <Answers
         // key={activeQuestionIndex}
         answers={QUESTIONS[index].answers}
-        selectedAnswer={answer.selectedAnswers}
+        selectedAnswer={answer.selectedAnswer}
         answersState={answeredState}
         onSelect={handleSelectAnswer}
       />

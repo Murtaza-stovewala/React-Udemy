@@ -97,7 +97,7 @@ header h1 {
   text-transform: uppercase;
 }
 
-#question progress {
+/* #question progress {
   width: 50%;
   height: 0.5rem;
   border-radius: 24px;
@@ -125,7 +125,65 @@ header h1 {
 
 #question progress.answered::-webkit-progress-bar {
   background: #6a558a;
+} */
+
+
+/* Quiz timer */
+#question-time {
+  width: 50%;
+  height: 0.5rem;
+  border-radius: 24px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  background: #6a558a;
 }
+
+/* Chrome, Edge */
+#question-time::-webkit-progress-bar {
+  background: #6a558a;
+  border-radius: 24px;
+}
+
+#question-time::-webkit-progress-value {
+  background: #9e5ef8;
+  border-radius: 24px;
+}
+
+/* Firefox */
+#question-time::-moz-progress-bar {
+  background: #9e5ef8;
+  border-radius: 24px;
+}
+
+/* Answer selected */
+#question-time.answered::-webkit-progress-value {
+  background: #f8e59c;
+}
+
+#question-time.answered::-moz-progress-bar {
+  background: #f8e59c;
+}
+
+/* Correct answer */
+#question-time.correct::-webkit-progress-value {
+  background: #5af59d;
+}
+
+#question-time.correct::-moz-progress-bar {
+  background: #5af59d;
+}
+
+/* Wrong answer */
+#question-time.wrong::-webkit-progress-value {
+  background: #f55a98;
+}
+
+#question-time.wrong::-moz-progress-bar {
+  background: #f55a98;
+}
+
 
 #question h2 {
   font-family: 'Roboto', sans-serif;
