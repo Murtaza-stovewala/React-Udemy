@@ -7,7 +7,7 @@ export default function Questions({
   index,
   onSelectAnswers,
   //   answeredState,
-  onSkipAnswers,
+  onSkipAnswer,
 }) {
   const [answer, setAnswer] = useState({
     selectedAnswers: "",
@@ -39,11 +39,12 @@ export default function Questions({
   return (
     <div id="questions">
       <QuizTimer
-        onTimeout={onSkipAnswers}
-        Timer={10000}
+        onTimeout={onSkipAnswer}
+        timeout={10000}
         // key={activeQuestionIndex}
       />
-      <h2>{QUESTIONS[index].text}</h2>
+     {/* <h2>{`Q.(${index + 1}) ${QUESTIONS[index].text}`}</h2> */}
+     <h2>Q.{index + 1}- {QUESTIONS[index].text}</h2>
       <Answers
         // key={activeQuestionIndex}
         answers={QUESTIONS[index].answers}

@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-export default function QuizTimer({ Timer, onTimeout }) {
-  const [remainingTime, setRemainingTime] = useState(Timer);
+export default function QuizTimer({ timeout, onTimeout }) {
+  const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => {
     console.log('SETTING TIMEOUT');
-    const timer = setTimeout(onTimeout, Timer);
+    const timer = setTimeout(onTimeout, timeout);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [Timer, onTimeout]);
+  }, [timeout, onTimeout]);
 
   useEffect(() => {
     console.log('SETTING INTERVAL');
@@ -23,5 +23,5 @@ export default function QuizTimer({ Timer, onTimeout }) {
     };
   }, []);
 
-  return <progress id="question-time" max={Timer} value={remainingTime} />;
+  return <progress id="question-time" max={timeout} value={remainingTime} />;
 }
