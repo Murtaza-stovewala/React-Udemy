@@ -2,7 +2,7 @@ import { useState } from "react";
 import { log } from "../../log.js";
 
 export default function ConfigureCounter({ onSet }) {
-  log("<ConfigureCounter /> rendered");
+  log("-<ConfigureCounter /> rendered");
 
   const [enteredNumber, setEnteredNumber] = useState(0);
 
