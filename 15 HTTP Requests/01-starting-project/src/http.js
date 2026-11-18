@@ -21,3 +21,14 @@ export async function updateUserPlaces(places) {
   }
   return resdata.message;
 }
+export async function fetchUserPlaces(){
+
+  const response= await fetch("http://localhost:3000/user-places");
+  if(!response.ok){
+    throw new Error("Could fetch the user places! try again later.");
+  }
+  const resdata=await response.json();
+
+  return resdata.places || [];;
+
+}
