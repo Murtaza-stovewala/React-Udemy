@@ -95,7 +95,7 @@ function App() {
 
       setModalIsOpen(false);
     },
-    [userPlaces],
+    [userPlaces,setUserPlaces],
   );
 
   function handleError() {
