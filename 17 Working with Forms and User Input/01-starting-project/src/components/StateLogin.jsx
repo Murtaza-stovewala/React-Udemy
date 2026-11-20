@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function Login() {
+export default function StateLogin() {
   // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [enteredPassword, setEnteredPassword] = useState('');
+  // const [enteredPassword, setEnteredPassword] = useState('');\
+
+  // function handleEmailChange(event) {
+  //   setEnteredEmail(event.target.value);
+  // }
+
+  // function handlePasswordChange(event) {
+  //   setEnteredPassword(event.target.value);
+  // }
+
   const [enteredValues, setEnteredValues] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
+
+  const emailIsInvalid =
+    enteredValues.email !== "" && !enteredValues.email.includes("@");
 
   function handleSubmit(event) {
     event.preventDefault();
-
     console.log(enteredValues);
   }
 
@@ -20,14 +31,6 @@ export default function Login() {
       [identifier]: value,
     }));
   }
-
-  // function handleEmailChange(event) {
-  //   setEnteredEmail(event.target.value);
-  // }
-
-  // function handlePasswordChange(event) {
-  //   setEnteredPassword(event.target.value);
-  // }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -40,9 +43,12 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
-            onChange={(event) => handleInputChange('email', event.target.value)}
+            onChange={(event) => handleInputChange("email", event.target.value)}
             value={enteredValues.email}
           />
+          <div className="control-error">
+            {emailIsInvalid && <p>Please enter a valid Email.</p>}
+          </div>
         </div>
 
         <div className="control no-margin">
@@ -52,7 +58,7 @@ export default function Login() {
             type="password"
             name="password"
             onChange={(event) =>
-              handleInputChange('password', event.target.value)
+              handleInputChange("password", event.target.value)
             }
             value={enteredValues.password}
           />
