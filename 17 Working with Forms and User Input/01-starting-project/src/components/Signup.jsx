@@ -11,6 +11,11 @@ export default function Signup() {
     const data = Object.fromEntries(fd.entries());
     data.acquisition = acquisitionChannel;
     // event.target.reset();//for reseeting the value
+    // if(data.password!==data['onfirm-password']){
+    //   setIsSame(false);
+    //   return
+    // }
+    // setIsSame(true)
   }
 
   function handleSamePwd(event) {
