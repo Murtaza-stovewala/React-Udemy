@@ -29,7 +29,10 @@ export default function StateLogin() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("enteredValues");
+    if (emailIsInvalid || passwordIsInvalid) {
+      return;
+    }
+    console.log("Email: ", emailValue, ", Password: ", passwordValue);
   }
 
   return (
